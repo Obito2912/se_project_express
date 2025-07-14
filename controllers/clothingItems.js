@@ -107,7 +107,7 @@ const likeItem = (req, res) => {
     { new: true }
   )
     .orFail()
-    .then(() => res.status(204).send())
+    .then((item) => res.status(200).send({ data: item }))
     .catch((err) => {
       console.error(err);
       if (err.name === "DocumentNotFoundError") {
@@ -131,7 +131,7 @@ const dislikeItem = (req, res) => {
     { new: true }
   )
     .orFail()
-    .then(() => res.status(204).send())
+    .then((item) => res.status(200).send({ data: item }))
     .catch((err) => {
       console.error(err);
       if (err.name === "DocumentNotFoundError") {
