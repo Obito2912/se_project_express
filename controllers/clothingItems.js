@@ -39,27 +39,6 @@ const createItem = (req, res) => {
     });
 };
 
-const updateItem = (req, res) => {
-  const { itemId } = req.params;
-  const { imageUrl } = req.body;
-
-  ClothingItem.findByIdAndUpdate(itemId, { $set: { imageUrl } })
-    .orFail()
-    .then((item) => res.status(200).send(item))
-    .catch((err) => {
-      console.error(err);
-      if (err.name === "DocumentNotFoundError") {
-        return res.status(NOT_FOUND).send({ message: "Item not found" });
-      }
-      if (err.name === "CastError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid Id format" });
-      }
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error has occurred on the server" });
-    });
-};
-
 const getItem = (req, res) => {
   const { itemId } = req.params;
   ClothingItem.findById(itemId)
@@ -151,7 +130,6 @@ module.exports = {
   createItem,
   getItems,
   getItem,
-  updateItem,
   deleteItem,
   likeItem,
   dislikeItem,
