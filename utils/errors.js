@@ -1,5 +1,8 @@
 const BAD_REQUEST = 400;
+const UNAUTHORIZE = 401;
+const FORBIDDEN = 403;
 const NOT_FOUND = 404;
+const CONFLICT_ERROR = 409;
 const INTERNAL_SERVER_ERROR = 500;
 
 const handleNotFound = (req, res) => {
@@ -11,4 +14,7 @@ module.exports = {
   BAD_REQUEST,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
+  CONFLICT_ERROR,
+  UNAUTHORIZE,
+  FORBIDDEN
 };
