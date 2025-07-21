@@ -18,15 +18,9 @@ const createUser = (req, res) => {
     .hash(password, 10)
     .then((hash) => User.create({ email, password: hash, name, avatar }))
     .then((user) => {
-      const {
-        _id,
-        email: userEmail,
-        name: userName,
-        avatar: userAvatar,
-      } = user;
-      res
-        .status(201)
-        .send({ _id, email: userEmail, name: userName, avatar: userAvatar });
+      const userObj = user.toObject(); // Convert Mongoose doc to plain object
+      delete userObj.password; // Remove password field
+      return res.status(201).send(userObj); // Send safe user object
     })
     .catch((err) => {
       if (err.name === "ValidationError") {
