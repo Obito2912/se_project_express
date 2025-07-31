@@ -86,6 +86,5 @@ module.exports = {
   validateCardBody,
   validateUserBody,
   validateAuthentication,
-  createIdValidator: createIdValidator("itemId"),
-  // createUserIdValidator: createIdValidator("userId"),
+  createIdValidator,
 };
