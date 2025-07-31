@@ -4,5 +4,7 @@ module.exports = (err, req, res, next) => {
 
   res
     .status(statusCode)
-    .send(statusCode === 500 ? "An error has occurred on the server" : message);
+    .send({
+      message: statusCode === 500 ? "An error occurred on the server" : message,
+    });
 };
