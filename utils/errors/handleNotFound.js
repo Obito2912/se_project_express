@@ -1,7 +1,7 @@
-const NOT_FOUND = 404;
+const NotFoundError = require("./NotFoundError");
 
-const handleNotFound = (req, res) => {
-  res.status(NOT_FOUND).send({ message: "Requested resource not found" });
+const handleNotFound = (_req, _res, next) => {
+  next(new NotFoundError("Requested resource not found"));
 };
 
 module.exports = handleNotFound;
